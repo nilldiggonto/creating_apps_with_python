@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Dictionary</title>
+
+    <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.css">
+</head>
+<body>
+    <div class="jumbotron text-center bg-primary text-light">
+        <h3>ENGLISH TO ENGLISH DICTIONARY</h3>
+    </div>
+
+    <div class="card text-center">
+        <div class="card-header bg-dark text-light">
+            <h4>Please Enter a word</h4>
+        </div>
+        <div class="card-body">
+            
+
+
+            <form action="{{url_for('index')}}" method="POST">
+                <div class="form-group">
+                  <!-- <label for="word">Word:</label> -->
+
+                  <input required type="text" class="form-control" id="word" 
+                  {% if word_p %}
+                  placeholder="{{word_p}}"
+                  {% else %}
+                  placeholder="Enter a word"
+                  {%endif%}
+                  name="word">
+
+                </div>
+              
+                <button type="submit" class="btn btn-primary">Meaning?</button>
+              </form>
+
+
+
+        </div>
+
+        <div class="card-footer bg-primary text-light">
+
+            {%if check %}
+                <p>Did you mean {{check | capitalize}} ?</p>
+            {% else %}
+            
+                {%if word_type %}
+
+                {%for w in word %}
+
+                <p>{{w}}</p> <br>
+
+                {%endfor%}
+
+                {% else %}
+
+                <p>{{word}}</p>
+
+                {% endif%}
+
+                {%endif %}
+           
+        </div>
+    </div>
+</body>
+</html>
